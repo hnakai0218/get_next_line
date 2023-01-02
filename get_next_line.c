@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 16:51:48 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 01:20:57 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 char	*get_next_line(int fd)
 {
+	static char	line[BUFFER_SIZE + 1]= {'\0'};
 	char		*buff;
-	static char	line[BUFFER_SIZE + 1];
+	size_t		read_size;
 	char		*arr;
-	size_t		i;
-	int			read_size;
+	static char *save;
 
 	if (line[0] == '\0')
 	{
@@ -29,16 +29,16 @@ char	*get_next_line(int fd)
 		ft_strlcpy(line, buff, read_size + 1);
 		free(buff);
 	}
-	i = ft_count(line);
-	arr = ft_substr(line, 0, i);
-	if (i != ft_strlen(line) || read_size < BUFFER_SIZE)
+	arr = ft_substr(line, 0, ft_count(line));
+	if (ft_count(line) != ft_strlen(line))
 	{
-		ft_strcpy(line, i + 1);
-		return (arr);
+		ft_memmove(line, line + ft_count(line) + 1, read_size - ft_count(line));
+		return (ft_strjoin(save,arr));
 	}
 	else
 	{
-		ft_strcpy(line, i + 1);
+		ft_memset(line, '\0', BUFFER_SIZE + 1);
+		save = ft_strdup(arr);
 		get_next_line(fd);
 	}
 	return (NULL);

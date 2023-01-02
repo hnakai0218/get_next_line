@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 16:49:25 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 00:55:48 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,18 +79,117 @@ size_t	ft_count(char *s)
 	return (i);
 }
 
-char	*ft_strcpy(char *s, size_t start)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	size_t	i;
+	size_t				i;
+	unsigned char		*udst;
+	const unsigned char	*usrc;
 
+	if (dst == src || n == 0)
+		return (dst);
+	udst = (unsigned char *)dst;
+	usrc = (const unsigned char *)src;
 	i = 0;
-	if (!s)
-		return (NULL);
-	while (s[start + i] != '\0')
+	while (i < n)
 	{
-		s[i] = s[start + i];
+		udst[i] = usrc[i];
 		i++;
 	}
-	s[i] = '\0';
-	return (s);
+	return (dst);
+}
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
+{
+	unsigned char	*udst;
+	unsigned char	*usrc;
+
+	if (dst == src || len == 0)
+		return (dst);
+	udst = (unsigned char *)dst;
+	usrc = (unsigned char *)src;
+	if (usrc < udst)
+	{
+		while (len > 0)
+		{
+			udst[len - 1] = usrc[len - 1];
+			len--;
+		}
+		return (dst);
+	}
+	ft_memcpy(dst, src, len);
+	return (dst);
+}
+
+void	*ft_memset(void *buf, int ch, size_t n)
+{
+	size_t			i;
+	unsigned char	*ubuf;
+	unsigned char	uch;
+
+	ubuf = (unsigned char *)buf;
+	uch = (unsigned char)ch;
+	i = 0;
+	while (i < n)
+	{
+		*(ubuf + i) = uch;
+		i++;
+	}
+	return (buf);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	size_t	len;
+	char	*s2;
+
+	len = ft_strlen(s1);
+	s2 = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s2)
+		return (NULL);
+	ft_memcpy(s2, s1, len + 1);
+	return (s2);
+}
+
+size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
+{
+	size_t	len_dst;
+	size_t	len_src;
+	size_t	i;
+
+	if (dstsize == 0)
+		return (ft_strlen(src));
+	len_dst = ft_strlen(dst);
+	len_src = ft_strlen(src);
+	i = 0;
+	if (len_dst >= dstsize)
+		return (dstsize + len_src);
+	while (i + len_dst + 1 < dstsize && src[i] != '\0')
+	{
+		dst[len_dst + i] = src[i];
+		i++;
+	}
+	dst[len_dst + i] = '\0';
+	return (len_dst + len_src);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	len_s1;
+	size_t	len_s2;
+
+	if (!s1 && !s2)
+		return (NULL);
+	else if (!s1)
+		return (ft_strdup(s2));
+	else if (!s2)
+		return (ft_strdup(s1));
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
+	if (!str)
+		return (NULL);
+	ft_strlcpy(str, s1, len_s1 + 1);
+	ft_strlcat(str, s2, len_s1 + len_s2 + 1);
+	return (str);
 }
