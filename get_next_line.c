@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 09:48:18 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/02 09:50:23 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*get_next_line(int fd)
 	if (!line)
 		return (NULL);
 	line[0] = '\0';
-	printf("%s",line);
 	if (line[0] == '\0')
 	{
 		buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
@@ -35,7 +34,6 @@ char	*get_next_line(int fd)
 		free(buff);
 	}
 	i = ft_count(line);
-	printf("%s",line);
 	if (i != ft_strlen(line))
 	{
 		arr = ft_substr(line, 0, i);
