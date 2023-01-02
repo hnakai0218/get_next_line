@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 09:50:23 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/02 09:52:03 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*get_next_line(int fd)
 		if (!buff)
 			return (NULL);
 		read(fd, (void *)buff, BUFFER_SIZE);
-		printf("%s",buff);
 		ft_strlcpy(line, buff, BUFFER_SIZE + 1);
 		free(buff);
 	}
