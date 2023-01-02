@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 01:20:57 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 01:26:09 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ char	*get_next_line(int fd)
 		free(buff);
 	}
 	arr = ft_substr(line, 0, ft_count(line));
-	if (ft_count(line) != ft_strlen(line))
+	if (ft_count(line) != ft_strlen(line) || read_size < BUFFER_SIZE)
 	{
 		ft_memmove(line, line + ft_count(line) + 1, read_size - ft_count(line));
 		return (ft_strjoin(save,arr));
@@ -50,6 +50,6 @@ char	*get_next_line(int fd)
 
 // 	fd = open(argv[argc - 1], O_RDONLY);
 // 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
+	// printf("%s\n", get_next_line(fd));
 // 	return (0);
 // }
