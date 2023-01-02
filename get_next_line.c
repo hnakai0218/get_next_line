@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2022/12/31 17:55:03 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/02 09:48:18 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ char	*get_next_line(int fd)
 	return (NULL);
 }
 
-int	main(int argc, char *argv[])
-{
-	int fd;
-	fd = open(argv[argc - 1], O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-	return (0);
-}
+// int	main(int argc, char *argv[])
+// {
+// 	int fd;
+// 	fd = open(argv[argc - 1], O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
+// 	return (0);
+// }
