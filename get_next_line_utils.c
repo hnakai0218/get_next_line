@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 09:51:05 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/02 16:49:25 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,28 @@ size_t	ft_strlen(const char *str)
 
 size_t	ft_count(char *s)
 {
-	size_t i;
+	size_t	i;
+
 	i = 0;
 	while (s[i] != '\0' && s[i] != '\n')
 	{
 		i++;
 	}
 	return (i);
+}
+
+char	*ft_strcpy(char *s, size_t start)
+{
+	size_t	i;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	while (s[start + i] != '\0')
+	{
+		s[i] = s[start + i];
+		i++;
+	}
+	s[i] = '\0';
+	return (s);
 }

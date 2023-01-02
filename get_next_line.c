@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 11:01:07 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/02 16:51:48 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 char	*get_next_line(int fd)
 {
 	char		*buff;
-	static char	*line;
+	static char	line[BUFFER_SIZE + 1];
 	char		*arr;
 	size_t		i;
 	int			read_size;
 
-	line = (char *)malloc(sizeof(BUFFER_SIZE + 1));
-	if (!line)
-		return (NULL);
-	line[0] = '\0';
 	if (line[0] == '\0')
 	{
 		buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
@@ -37,14 +33,13 @@ char	*get_next_line(int fd)
 	arr = ft_substr(line, 0, i);
 	if (i != ft_strlen(line) || read_size < BUFFER_SIZE)
 	{
-		ft_strlcpy(line, line, ft_strlen(line) - i + 1);
+		ft_strcpy(line, i + 1);
 		return (arr);
 	}
 	else
 	{
-		line[0] = '\0';
+		ft_strcpy(line, i + 1);
 		get_next_line(fd);
-		return (arr);
 	}
 	return (NULL);
 }
@@ -54,6 +49,7 @@ char	*get_next_line(int fd)
 // 	int	fd;
 
 // 	fd = open(argv[argc - 1], O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
 // 	printf("%s\n", get_next_line(fd));
 // 	return (0);
 // }
