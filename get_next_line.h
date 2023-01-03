@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:06:58 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/02 23:55:12 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 00:28:41 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+#include <string.h>
 
 char	*get_next_line(int fd);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
@@ -25,9 +26,9 @@ size_t	ft_count(char *s);
 size_t	ft_strlen(const char *str);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-void	*ft_memset(void *buf, int ch, size_t n);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s1);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
+char	*ft_strchr(const char *s, int c);
 
 #endif

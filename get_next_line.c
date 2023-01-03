@@ -6,50 +6,122 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 14:23:52 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 02:40:12 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_next_line(int fd)
-{
-	if(0 < fd && fd > 256)
-		return (NULL);
-	static char	line[BUFFER_SIZE + 1] = {'\0'};
-	char		*buff;
-	size_t		read_size;
-	char		*arr;
-	static char *save;
+//ab\nc||def
+// char	*get_next_line(int fd)
+// {
+// 	static char	*save;
+// 	char		*buff;
+// 	size_t		read_size;
+// 	char		*line;
 
-	if (line[0] == '\0')
-	{
-		buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
-		if (!buff)
-			return (NULL);
-		read_size = read(fd, buff, BUFFER_SIZE);
-		ft_strlcpy(line, buff, read_size + 1);
-		free(buff);
-	}
-	arr = ft_substr(line, 0, ft_count(line));
-	save = ft_strjoin(save,arr);
-	free(arr);
-	if (ft_count(line) != ft_strlen(line))
-		ft_memmove(line, line + ft_count(line) + 1, read_size - ft_count(line));
-	else if(read_size == BUFFER_SIZE && ft_count(line) == ft_strlen(line))
-	{
-		ft_memset(line, '\0', 1);
-		get_next_line(fd);
-	}
-	return (save);
+// 	if (save[0] == '\0')
+// 	{
+// 		buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
+// 		if (!buff)
+// 			return (NULL);
+// 		read_size = read(fd, buff, BUFFER_SIZE);
+// 		if (buff == NULL)
+// 			return (NULL);
+// 	}
+// 	line = ft_substr(buff, 0, ft_count(buff));
+// 	save = ft_strjoin(save, line);
+// 	if (ft_count(buff) != ft_strlen(buff))
+// 		ft_memmove(save, buff + ft_count(buff) + 1, read_size - ft_count(buff));
+// 	else if (read_size == BUFFER_SIZE)
+// 	{
+// 		ft_memset(save, '\0', 1);
+// 		get_next_line(fd);
+// 	}
+// 	return (save);
+// }
+
+char	*ft_readbuff(int fd)
+{
+	char	*buff;
+
+	// size_t	read_size;
+	buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
+	if (!buff)
+		return (NULL);
+	read(fd, buff, BUFFER_SIZE);
+	if (buff[0] == '\0')
+		return (NULL);
+	printf("buff:%s\n",buff);
+	return (buff);
 }
 
-// int	main(int argc, char *argv[])
-// {
-// 	int	fd;
+size_t	ft_count(char *s)
+{
+	int	i;
 
-// 	fd = open(argv[argc - 1], O_RDONLY);
-// 	printf("%s\n", get_next_line(fd));
-// 	printf("%s\n", get_next_line(fd));
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+	{
+		if (s[i] == '\n')
+			return (i);
+		i++;
+	}
+	return (i);
+}
+
+char	*get_next_line(int fd)
+{
+	size_t		count;
+	char		*buff;
+	static char	save[BUFFER_SIZE] = {'\0'};
+	char		*line;
+
+	if (save[0] == '\0')//no word in string save
+		buff = ft_readbuff(fd);
+	else
+		buff = ft_strdup(save);
+	if (!buff)
+		return (NULL);
+	count = ft_count(buff);
+	line = NULL;
+	while (count == ft_strlen(buff)) // exist no newline in string buff
+	{
+		line = ft_strjoin(line, buff);
+		free(buff);
+		buff = ft_readbuff(fd);
+		if(!buff)
+		{
+			save[0] = '\0';
+			return (line);
+		}
+	}
+	line = ft_strjoin(save, ft_substr(buff, 0, count));
+	ft_memmove(save, buff + count + 1, ft_strlen(buff) - count);
+	free(buff);
+	return (line);
+}
+
+// int	main(int ac, char **av)
+// {
+// 	size_t	i;
+// 	int		fd;
+// 	char	*s;
+
+// 	if (ac != 2)
+// 		return (printf("ERROR: arg number is invalid.\n"));
+// 	fd = open((const char *)av[1], O_RDONLY);
+// 	if (fd < 0)
+// 		return (printf("ERRPR: fine not found.\n"));
+// 	i = 0;
+// 	s = "a";
+// 	while (i < 4)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("line%zu : %s\n", i, s);
+// 		i++;
+// 	}
 // 	return (0);
 // }

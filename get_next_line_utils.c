@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 00:55:48 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 02:04:14 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,18 +67,6 @@ size_t	ft_strlen(const char *str)
 	return (len);
 }
 
-size_t	ft_count(char *s)
-{
-	size_t	i;
-
-	i = 0;
-	while (s[i] != '\0' && s[i] != '\n')
-	{
-		i++;
-	}
-	return (i);
-}
-
 void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t				i;
@@ -118,23 +106,6 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	}
 	ft_memcpy(dst, src, len);
 	return (dst);
-}
-
-void	*ft_memset(void *buf, int ch, size_t n)
-{
-	size_t			i;
-	unsigned char	*ubuf;
-	unsigned char	uch;
-
-	ubuf = (unsigned char *)buf;
-	uch = (unsigned char)ch;
-	i = 0;
-	while (i < n)
-	{
-		*(ubuf + i) = uch;
-		i++;
-	}
-	return (buf);
 }
 
 char	*ft_strdup(const char *s1)
