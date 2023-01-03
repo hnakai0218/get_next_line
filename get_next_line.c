@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 10:22:15 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 10:27:10 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_next_line(int fd)
 	{
 		if(read_size < BUFFER_SIZE)
 			return (save);
-		ft_memset(line, '\0', BUFFER_SIZE + 1);
+		ft_memset(line, '\0', 1);
 		get_next_line(fd);
 		return (save);
 	}
