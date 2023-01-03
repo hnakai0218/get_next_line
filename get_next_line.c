@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 02:41:29 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 02:53:07 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ char	*get_next_line(int fd)
 		line = ft_strjoin(line, buff);
 		free(buff);
 		buff = ft_readbuff(fd);
+		count = ft_count(buff);
 		if(!buff)
 		{
 			save[0] = '\0';
