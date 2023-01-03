@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 10:27:10 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:18:34 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	static char	line[BUFFER_SIZE + 1]= {'\0'};
+	static char	line[BUFFER_SIZE + 1] = {'\0'};
 	char		*buff;
 	size_t		read_size;
 	char		*arr;
@@ -33,19 +33,13 @@ char	*get_next_line(int fd)
 	save = ft_strjoin(save,arr);
 	free(arr);
 	if (ft_count(line) != ft_strlen(line))
-	{
 		ft_memmove(line, line + ft_count(line) + 1, read_size - ft_count(line));
-		return (save);
-	}
-	else
+	else if(read_size == BUFFER_SIZE && ft_count(line) == ft_strlen(line))
 	{
-		if(read_size < BUFFER_SIZE)
-			return (save);
 		ft_memset(line, '\0', 1);
 		get_next_line(fd);
-		return (save);
 	}
-	return (NULL);
+	return (save);
 }
 
 // int	main(int argc, char *argv[])
