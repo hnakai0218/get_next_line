@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 01:26:09 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 10:22:15 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,20 @@ char	*get_next_line(int fd)
 		free(buff);
 	}
 	arr = ft_substr(line, 0, ft_count(line));
-	if (ft_count(line) != ft_strlen(line) || read_size < BUFFER_SIZE)
+	save = ft_strjoin(save,arr);
+	free(arr);
+	if (ft_count(line) != ft_strlen(line))
 	{
 		ft_memmove(line, line + ft_count(line) + 1, read_size - ft_count(line));
-		return (ft_strjoin(save,arr));
+		return (save);
 	}
 	else
 	{
+		if(read_size < BUFFER_SIZE)
+			return (save);
 		ft_memset(line, '\0', BUFFER_SIZE + 1);
-		save = ft_strdup(arr);
 		get_next_line(fd);
+		return (save);
 	}
 	return (NULL);
 }
@@ -50,6 +54,6 @@ char	*get_next_line(int fd)
 
 // 	fd = open(argv[argc - 1], O_RDONLY);
 // 	printf("%s\n", get_next_line(fd));
-	// printf("%s\n", get_next_line(fd));
+// 	printf("%s\n", get_next_line(fd));
 // 	return (0);
 // }
