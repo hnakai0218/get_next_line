@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/03 14:22:39 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/03 14:23:52 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_line(int fd)
 {
-	if(fd > 256)
+	if(0 < fd && fd > 256)
 		return (NULL);
 	static char	line[BUFFER_SIZE + 1] = {'\0'};
 	char		*buff;
