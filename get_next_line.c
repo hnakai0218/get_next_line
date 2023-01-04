@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 10:22:45 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 17:09:53 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,15 @@ char	*get_next_line(int fd)
 	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff
 	{
 		line = ft_strjoin(line, buff);
-		free(buff);
 		buff = ft_readbuff(fd);
 		if(!buff)
 		{
-			free(buff);
 			save[0] = '\0';
 			return (line);
 		}
 	}
 	line = ft_strjoin(line, ft_substr(buff, 0, ft_count(buff) + 1));
+	// free(ft_substr(buff, 0, ft_count(buff) + 1));
 	ft_memmove(save, buff + ft_count(buff) + 1, ft_strlen(buff) - ft_count(buff));
 	free(buff);
 	return (line);
