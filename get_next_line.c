@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 18:07:03 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:19:44 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,14 @@
 char	*ft_readbuff(int fd)
 {
 	char	*buff;
+	int		read_size;
 
 	buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
-	read(fd, buff, BUFFER_SIZE);
-	if (buff[0] == '\0')
+	read_size = read(fd, buff, BUFFER_SIZE);
+	buff[read_size] = '\0';
+	if (read_size == 0)
 	{
 		free(buff);
 		return (NULL);
@@ -63,10 +65,8 @@ char	*get_next_line(int fd)
 	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff
 	{
 		line = ft_strjoin(line, buff);
-		// free(buff);
+		free(buff);
 		buff = ft_readbuff(fd);
-		// printf("buff:%s",buff);
-		printf("*");
 		if(!buff)
 		{
 			free(buff);
