@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 03:51:26 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 03:53:04 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,15 @@ char	*ft_readbuff(int fd)
 		return (NULL);
 	read_size = read(fd, buff, BUFFER_SIZE);
 	if(read_size < 0)
+	{
+		free(buff);
 		return (NULL);
+	}
 	if (read_size == 0)
+	{
+		free(buff);
 		return (NULL);
+	}
 	buff[read_size] = '\0';
 	return (buff);
 }
@@ -58,7 +64,7 @@ char	*get_next_line(int fd)
 		buff = ft_strdup(save);
 	if (!buff)
 	{
-		free(buff);
+		// free(buff);
 		return (NULL);
 	}
 	line = NULL;
@@ -69,7 +75,7 @@ char	*get_next_line(int fd)
 		buff = ft_readbuff(fd);
 		if(!buff)
 		{
-			free(buff);
+			// free(buff);
 			save[0] = '\0';
 			return (line);
 		}
