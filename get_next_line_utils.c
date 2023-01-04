@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:06:24 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:08:24 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	else if (!s1)
+	{
+		printf("s2:%s\n",s2);
 		return (ft_strdup(s2));
+	}
 	else if (!s2)
 		return (ft_strdup(s1));
 	len_s1 = ft_strlen(s1);
