@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:41:31 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:44:30 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(str, s1, len_s1 + 1);
 	ft_strlcat(str, s2, len_s1 + len_s2 + 1);
-	free(s1);
+	// free(s1);
 	return (str);
 }
 
