@@ -6,46 +6,16 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 03:31:35 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 10:15:21 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-//ab\nc||def
-// char	*get_next_line(int fd)
-// {
-// 	static char	*save;
-// 	char		*buff;
-// 	size_t		read_size;
-// 	char		*line;
-
-// 	if (save[0] == '\0')
-// 	{
-// 		buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
-// 		if (!buff)
-// 			return (NULL);
-// 		read_size = read(fd, buff, BUFFER_SIZE);
-// 		if (buff == NULL)
-// 			return (NULL);
-// 	}
-// 	line = ft_substr(buff, 0, ft_count(buff));
-// 	save = ft_strjoin(save, line);
-// 	if (ft_count(buff) != ft_strlen(buff))
-// 		ft_memmove(save, buff + ft_count(buff) + 1, read_size - ft_count(buff));
-// 	else if (read_size == BUFFER_SIZE)
-// 	{
-// 		ft_memset(save, '\0', 1);
-// 		get_next_line(fd);
-// 	}
-// 	return (save);
-// }
-
 char	*ft_readbuff(int fd)
 {
 	char	*buff;
 
-	// size_t	read_size;
 	buff = (char *)malloc(sizeof(BUFFER_SIZE + 1));
 	if (!buff)
 		return (NULL);
@@ -82,7 +52,10 @@ char	*get_next_line(int fd)
 	else
 		buff = ft_strdup(save);
 	if (!buff)
+	{
+		free(buff);
 		return (NULL);
+	}
 	line = NULL;
 	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff
 	{
