@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:22:18 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:24:01 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,13 +78,13 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	udst = (unsigned char *)dst;
 	usrc = (const unsigned char *)src;
 	i = 0;
-	printf("src:%s\n",src);
 	while (i < n)
 	{
+		printf("*");
 		udst[i] = usrc[i];
 		i++;
 	}
-	printf("%s\n",dst);
+	// printf("%s\n",dst);
 	return (dst);
 }
 
