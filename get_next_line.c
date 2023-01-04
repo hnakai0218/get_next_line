@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 18:27:12 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 03:01:26 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,28 @@ char	*get_next_line(int fd)
 	free(ft_substr(buff, 0, ft_count(buff) + 1));
 	ft_memmove(save, buff + ft_count(buff) + 1, ft_strlen(buff) - ft_count(buff));
 	free(buff);
+	printf("line: %s\n",line);
 	return (line);
 }
 
-// int	main(int ac, char **av)
-// {
-// 	size_t	i;
-// 	int		fd;
-// 	char	*s;
+int	main(int ac, char **av)
+{
+	size_t	i;
+	int		fd;
+	char	*s;
 
-// 	if (ac != 2)
-// 		return (printf("ERROR: arg number is invalid.\n"));
-// 	fd = open((const char *)av[1], O_RDONLY);
-// 	if (fd < 0)
-// 		return (printf("ERRPR: fine not found.\n"));
-// 	i = 0;
-// 	s = "a";
-// 	while (s != NULL)
-// 	{
-// 		s = get_next_line(fd);
-// 		printf("line%zu : %s\n", i, s);
-// 		i++;
-// 	}
-// 	return (0);
-// }
+	if (ac != 2)
+		return (printf("ERROR: arg number is invalid.\n"));
+	fd = open((const char *)av[1], O_RDONLY);
+	if (fd < 0)
+		return (printf("ERRPR: fine not found.\n"));
+	i = 0;
+	s = "a";
+	while (s != NULL)
+	{
+		s = get_next_line(fd);
+		printf("line%zu : %s\n", i, s);
+		i++;
+	}
+	return (0);
+}
