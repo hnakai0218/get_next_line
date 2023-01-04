@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:12:58 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:14:13 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,8 @@ char	*ft_strdup(const char *s1)
 	s2 = (char *)malloc(sizeof(char) * (len + 1));
 	if (!s2)
 		return (NULL);
-	ft_memcpy(s2, s1, len + 2);
+	printf("%ld\n",len + 1);
+	ft_memcpy(s2, s1, len + 1);
 	return (s2);
 }
 
