@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 17:12:35 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 17:22:13 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ char	*get_next_line(int fd)
 	else
 		buff = ft_strdup(save);
 	if (!buff)
+	{
+		free(buff);
 		return (NULL);
+	}
 	line = NULL;
 	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff
 	{
@@ -69,7 +72,6 @@ char	*get_next_line(int fd)
 		}
 	}
 	line = ft_strjoin(line, ft_substr(buff, 0, ft_count(buff) + 1));
-	// free(ft_substr(buff, 0, ft_count(buff) + 1));
 	ft_memmove(save, buff + ft_count(buff) + 1, ft_strlen(buff) - ft_count(buff));
 	free(buff);
 	return (line);
