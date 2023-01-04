@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:28:08 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:30:01 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		printf("i:%ld || line:%s\n",i,udst);
 		udst[i] = usrc[i];
+		printf("i:%2ld || line:%s\n",i,udst);
 		i++;
 	}
 	// printf("%s\n",dst);
