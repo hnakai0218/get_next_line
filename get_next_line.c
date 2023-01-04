@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 18:19:44 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:22:29 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_readbuff(int fd)
 	if (!buff)
 		return (NULL);
 	read_size = read(fd, buff, BUFFER_SIZE);
+	if(read_size < 0)
+		return (NULL);
 	buff[read_size] = '\0';
 	if (read_size == 0)
 	{
