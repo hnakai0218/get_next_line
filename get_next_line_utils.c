@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:40:03 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:41:31 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		printf("i:%2ld || line:%s\n",i,udst);
 		i++;
 	}
-	udst[i];
 	return (dst);
 }
 
