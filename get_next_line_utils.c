@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:44:30 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:46:02 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,9 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	udst = (unsigned char *)dst;
 	usrc = (const unsigned char *)src;
 	i = 0;
-	printf("src:%s\n",src);
 	while (i < n)
 	{
 		udst[i] = usrc[i];
-		udst[i + 1] = '\0';
-		printf("i:%2ld || line:%s\n",i,udst);
 		i++;
 	}
 	return (dst);
@@ -165,7 +162,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	ft_strlcpy(str, s1, len_s1 + 1);
 	ft_strlcat(str, s2, len_s1 + len_s2 + 1);
-	// free(s1);
+	free(s1);
 	return (str);
 }
 
