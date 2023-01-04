@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 04:00:53 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 04:02:35 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,24 +86,24 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(int ac, char **av)
-{
-	size_t	i;
-	int		fd;
-	char	*s;
+// int	main(int ac, char **av)
+// {
+// 	size_t	i;
+// 	int		fd;
+// 	char	*s;
 
-	if (ac != 2)
-		return (printf("ERROR: arg number is invalid.\n"));
-	fd = open((const char *)av[1], O_RDONLY);
-	if (fd < 0)
-		return (printf("ERRPR: fine not found.\n"));
-	i = 0;
-	s = "a";
-	while (s != NULL)
-	{
-		s = get_next_line(fd);
-		printf("line%zu : %s\n", i, s);
-		i++;
-	}
-	return (0);
-}
+// 	if (ac != 2)
+// 		return (printf("ERROR: arg number is invalid.\n"));
+// 	fd = open((const char *)av[1], O_RDONLY);
+// 	if (fd < 0)
+// 		return (printf("ERRPR: fine not found.\n"));
+// 	i = 0;
+// 	s = "a";
+// 	while (s != NULL)
+// 	{
+// 		s = get_next_line(fd);
+// 		printf("line%zu : %s\n", i, s);
+// 		i++;
+// 	}
+// 	return (0);
+// }
