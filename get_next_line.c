@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 03:03:41 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 03:46:18 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ char	*get_next_line(int fd)
 	char		*buff;
 	static char	save[BUFFER_SIZE] = {'\0'};
 	char		*line;
+	char		*arr;
 
 	if (save[0] == '\0')//no word in string save
 		buff = ft_readbuff(fd);
@@ -64,7 +65,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	line = NULL;
-	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff
+	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff //abcd e\nf
 	{
 		line = ft_strjoin(line, buff);
 		free(buff);
@@ -76,11 +77,14 @@ char	*get_next_line(int fd)
 			return (line);
 		}
 	}
-	line = ft_strjoin(line, ft_substr(buff, 0, ft_count(buff) + 1));
-	free(ft_substr(buff, 0, ft_count(buff) + 1));
+	arr=ft_substr(buff, 0, ft_count(buff) + 1);
+	line = ft_strjoin(line, arr);
+	free(arr);
 	ft_memmove(save, buff + ft_count(buff) + 1, ft_strlen(buff) - ft_count(buff));
+	// printf("save:%s\n",save);
+	// printf("buff:%s\n",buff);
+	// printf("what:%s\n",arr);
 	free(buff);
-	printf("line: %s\n",line);
 	return (line);
 }
 
