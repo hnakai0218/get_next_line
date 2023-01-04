@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/04 17:42:43 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/04 18:05:10 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,10 @@ char	*get_next_line(int fd)
 		free(buff);
 		buff = ft_readbuff(fd);
 		// printf("buff:%s",buff);
+		printf("*");
 		if(!buff)
 		{
+			free(buff);
 			save[0] = '\0';
 			return (line);
 		}
@@ -92,7 +94,7 @@ char	*get_next_line(int fd)
 // 		return (printf("ERRPR: fine not found.\n"));
 // 	i = 0;
 // 	s = "a";
-// 	while (i<3)
+// 	while (s != NULL)
 // 	{
 // 		s = get_next_line(fd);
 // 		printf("line%zu : %s\n", i, s);
