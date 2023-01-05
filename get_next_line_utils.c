@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 17:52:15 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 17:58:48 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	*ft_memmove(void *dst, const void *src, size_t len)
 	return (dst);
 }
 
-char	*ft_strdup(char *s1)
+char	*ft_strdup(const char *s1)
 {
 	size_t	len;
 	char	*s2;
@@ -118,7 +118,6 @@ char	*ft_strdup(char *s1)
 	if (!s2)
 		return (NULL);
 	ft_memcpy(s2, s1, len + 1);
-	free(s1);
 	return (s2);
 }
 
@@ -153,9 +152,15 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	else if (!s1)
+	{
+		printf("a");
 		return (ft_strdup(s2));
+	}
 	else if (!s2)
+	{
+		printf("b");
 		return (ft_strdup(s1));
+	}
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
