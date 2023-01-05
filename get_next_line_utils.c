@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 18:02:16 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 18:06:23 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,15 +152,9 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (!s1 && !s2)
 		return (NULL);
 	else if (!s1)
-	{
-		free(s1);
 		return (ft_strdup(s2));
-	}
 	else if (!s2)
-	{
-		printf("b");
 		return (ft_strdup(s1));
-	}
 	len_s1 = ft_strlen(s1);
 	len_s2 = ft_strlen(s2);
 	str = (char *)malloc(sizeof(char) * (len_s1 + len_s2 + 1));
