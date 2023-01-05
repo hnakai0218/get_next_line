@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 23:07:56 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 23:11:35 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	udst = (unsigned char *)dst;
 	usrc = (const unsigned char *)src;
 	i = 0;
+	printf("buff[8]:%s\n",src);
 	while (i < n)
 	{
 		udst[i] = usrc[i];
@@ -114,18 +115,15 @@ char	*ft_strdup(const char *s1)
 	char	*s2;
 
 	len = ft_strlen(s1);
-	printf("buff[6]:%s\n",s1);
-	fflush(stdout);
 	s2 = (char *)malloc(sizeof(char) * (len + 1));
 	if (!s2)
 		return (NULL);
-	printf("buff[7]:%s\n",s1);
+	printf("buff[6]:%s\n",s1);
 	fflush(stdout);
 	ft_memcpy(s2, s1, len + 1);
-	printf("buff[8]:%s\n",s1);
+	printf("buff[7]:%s\n",s1);
 	fflush(stdout);
 	printf("buff[9]:%s\n",s2);
-	fflush(stdout);
 	fflush(stdout);
 	return (s2);
 }
