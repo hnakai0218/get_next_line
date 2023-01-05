@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 00:02:03 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 22:58:50 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 23:06:09 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ char	*ft_strdup(const char *s1)
 	printf("buff[7]:%s\n",s1);
 	fflush(stdout);
 	ft_memcpy(s2, s1, len + 1);
+	printf("buff[8]:%s\n",s1);
 	printf("buff[8]:%s\n",s2);
 	fflush(stdout);
 	return (s2);
