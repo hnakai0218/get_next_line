@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 05:01:13 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 05:09:26 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ char	*get_next_line(int fd)
 	line = NULL;
 	while (ft_count(buff) == ft_strlen(buff)) // exist no newline in string buff //abcd e\nf
 	{
-		line = ft_strjoin(line, buff);
-		// free(buff);
+		line = ft_strjoin(line, buff);//I think the free(s1) in the function of ft_strjoin is a problem!! 
+		free(buff);
 		buff = ft_readbuff(fd);
 		if(!buff)
 		{
