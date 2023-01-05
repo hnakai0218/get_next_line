@@ -6,7 +6,7 @@
 /*   By: hnakai <hnakai@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 00:59:19 by hnakai            #+#    #+#             */
-/*   Updated: 2023/01/05 18:16:17 by hnakai           ###   ########.fr       */
+/*   Updated: 2023/01/05 18:17:54 by hnakai           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,13 @@ char	*get_next_line(int fd)
 			return (line);
 		}
 	}
+	printf("buff:%s",buff);
 	arr = ft_substr(buff, 0, ft_count(buff) + 1);
 	line = ft_strjoin(line, arr);
 	free(arr);
 	ft_memmove(save, buff + ft_count(buff) + 1, ft_strlen(buff) - ft_count(buff));
 	printf("buff:%s",buff);
-	printf("buff[%ld]:%c",ft_count(buff)+1,buff[ft_count(line) + 1]);
+	// printf("buff[%ld]:%c",ft_count(buff)+1,buff[ft_count(line) + 1]);
 	free(buff);
 	return (line);
 }
